@@ -89,10 +89,13 @@ module.exports = function CmdChannel(mod) {
 			});
 
 			hook('S_SPAWN_ME', 3, {order: 100}, (event) => {
+				if (mod.game.me.onPegasus) return;
+
 				sSpawnMe = event;
 
 				if(skip) {
 					skip = false;
+
 					mod.send('S_SPAWN_ME', 3, (event));
 					mod.send('C_PLAYER_LOCATION', 5, {
 						loc: event.loc,
