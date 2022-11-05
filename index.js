@@ -112,7 +112,7 @@ module.exports = function CmdChannel(mod) {
 
 			hook('C_PLAYER_LOCATION', 5, (event) => {
 				if(sSpawnMe) {
-					if(event.loc.z !== sSpawnMe.loc.z) {
+					if(Math.abs(event.loc.z - sSpawnMe.loc.z) > 100) {
 						mod.send('S_INSTANT_MOVE', 3, {
 							gameId: mod.game.me.gameId,
 							loc: sSpawnMe.loc,
